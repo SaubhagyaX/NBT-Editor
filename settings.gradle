@@ -7,3 +7,6 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+rootProject.name = 'NBT-Editor'
+include 'nbteditor_1.17'
