@@ -47,7 +47,7 @@ public class ScreenMixin {
 			ImportScreen.importFiles(paths, Optional.empty());
 	}
 	
-	@Inject(method = "handleTextClick", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "handleTextClick", at = @At("HEAD"), cancellable = true, require = 0)
 	private void handleTextClick(Style style, CallbackInfoReturnable<Boolean> info) {
 		if (style != null && !Screen.hasShiftDown() && style.getClickEvent() != null) {
 			MVTextEvents.ClickAction<?> clickAction = MVTextEvents.ClickAction.getAction(style.getClickEvent());
