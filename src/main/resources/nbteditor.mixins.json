@@ -7,14 +7,9 @@
   "mixins": [
     "ServerPlayNetworkHandlerMixin",
     "ServerPlayerEntityMixin",
-    "ShulkerBoxSlotMixin",
-    "ShulkerBoxScreenHandlerMixin",
-    "HorseScreenHandlerMixin",
-    "HorseScreenHandler1Mixin",
-    "HorseScreenHandler2Mixin",
+    "ManySlotMixin",
     "DataTrackerMixin",
-    "ThreadExecutorMixin",
-    "ClickSlotC2SPacketMixin"
+    "ThreadExecutorMixin"
   ],
   "client": [
     "ChatScreenMixin",
@@ -27,7 +22,6 @@
     "HandledScreenAccessor",
     "TextFieldWidgetMixin",
     "MinecraftClientMixin",
-    "StringNbtReaderMixin",
     "ScreenMixin",
     "BookScreenMixin",
     "HandledScreenMixin",

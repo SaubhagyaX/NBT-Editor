@@ -6,7 +6,7 @@ import org.lwjgl.glfw.GLFW;
 
 import com.luneruniverse.minecraft.mod.nbteditor.NBTEditorClient;
 import com.luneruniverse.minecraft.mod.nbteditor.commands.get.GetLostItemCommand;
-import com.luneruniverse.minecraft.mod.nbteditor.containers.ContainerIO;
+import com.luneruniverse.minecraft.mod.nbteditor.containers.ContainerIOs;
 import com.luneruniverse.minecraft.mod.nbteditor.multiversion.IdentifierInst;
 import com.luneruniverse.minecraft.mod.nbteditor.multiversion.IgnoreCloseScreenPacket;
 import com.luneruniverse.minecraft.mod.nbteditor.multiversion.MVDrawableHelper;
@@ -29,7 +29,6 @@ import net.minecraft.client.gui.screen.ingame.GenericContainerScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
@@ -66,7 +65,7 @@ public class ClientHandledScreen extends GenericContainerScreen implements OldEv
 		
 		boolean notAir = item != null && !item.isEmpty();
 		if (hasControlDown()) {
-			if (notAir && ContainerIO.isContainer(item))
+			if (notAir && ContainerIOs.isSupported(item))
 				ContainerScreen.show(ref);
 		} else if (hasShiftDown()) {
 			if (notAir)
@@ -79,9 +78,14 @@ public class ClientHandledScreen extends GenericContainerScreen implements OldEv
 	
 	private ServerInventoryManager serverInv;
 	
-	protected ClientHandledScreen(GenericContainerScreenHandler handler, Text title) {
-		super(handler, MainUtil.client.player.getInventory(), title);
+	protected ClientHandledScreen(int rows, Text title) {
+		super(new ClientScreenHandler(rows), MainUtil.client.player.getInventory(), title);
+		((ClientScreenHandler) handler).setScreen(this);
 		handler.disableSyncing();
+	}
+	
+	protected void setSlotTextures(Identifier... textures) {
+		((ClientScreenHandler) handler).setSlotTextures(textures);
 	}
 	
 	public ServerInventoryManager getServerInventoryManager() {
@@ -200,7 +204,7 @@ public class ClientHandledScreen extends GenericContainerScreen implements OldEv
 						}
 						case QUICK_MOVE -> {
 							ItemStack prevItem = slot.getStack().copy();
-							LockableSlot.unlockDuring(() -> handler.onSlotClick(slot.id, button, actionType, MainUtil.client.player));
+							ClientScreenHandlerSlot.unlockDuring(() -> handler.onSlotClick(slot.id, button, actionType, MainUtil.client.player));
 							slot.setStackNoCallbacks(prevItem);
 							serverInv.updateServer();
 						}

@@ -15,7 +15,7 @@ import com.luneruniverse.minecraft.mod.nbteditor.clientchest.LargeClientChestPag
 import com.luneruniverse.minecraft.mod.nbteditor.clientchest.PageLoadLevel;
 import com.luneruniverse.minecraft.mod.nbteditor.clientchest.SmallClientChestPageCache;
 import com.luneruniverse.minecraft.mod.nbteditor.commands.CommandHandler;
-import com.luneruniverse.minecraft.mod.nbteditor.containers.ContainerIO;
+import com.luneruniverse.minecraft.mod.nbteditor.containers.ContainerIOs;
 import com.luneruniverse.minecraft.mod.nbteditor.misc.MixinLink;
 import com.luneruniverse.minecraft.mod.nbteditor.multiversion.MVEnchantments;
 import com.luneruniverse.minecraft.mod.nbteditor.multiversion.MVMisc;
@@ -78,7 +78,7 @@ public class NBTEditorClient implements ClientModInitializer {
 		} catch (IOException e) {
 			NBTEditor.LOGGER.error("Error while loading HeadDB favorites", e);
 		}
-		ContainerIO.loadClass();
+		ContainerIOs.loadClass();
 		new HeadRefreshThread().start();
 		ConfigScreen.loadSettings();
 		CURSOR_MANAGER = new CursorManager();
@@ -89,14 +89,14 @@ public class NBTEditorClient implements ClientModInitializer {
 		MVClientNetworking.PlayNetworkStateEvents.Stop.EVENT.register(() -> ClientChestHelper.unloadAllPages(PageLoadLevel.NORMAL_ITEMS));
 		
 		ItemStack clientChestIcon = new ItemStack(Items.ENDER_CHEST)
-				.manager$setCustomName(TextInst.translatable("itemGroup.nbteditor.client_chest"));
+				.nbte$setCustomName(TextInst.translatable("itemGroup.nbteditor.client_chest"));
 		MVEnchantments.addEnchantment(clientChestIcon, MVEnchantments.LOYALTY, 1);
 		MixinLink.ENCHANT_GLINT_FIX.add(clientChestIcon);
 		NBTEditorAPI.registerInventoryTab(clientChestIcon,
 				ClientChestScreen::show,
 				screen -> screen instanceof CreativeInventoryScreen || (screen instanceof InventoryScreen && SERVER_CONN.isEditingExpanded()));
 		NBTEditorAPI.registerInventoryTab(new ItemStack(Items.CHEST)
-				.manager$setCustomName(TextInst.translatable("itemGroup.nbteditor.inventory")),
+				.nbte$setCustomName(TextInst.translatable("itemGroup.nbteditor.inventory")),
 				CURSOR_MANAGER::showRoot,
 				screen -> screen instanceof ClientChestScreen);
 		NBTEditorAPI.registerInventoryTab(new ItemStack(Items.ENDER_CHEST),
