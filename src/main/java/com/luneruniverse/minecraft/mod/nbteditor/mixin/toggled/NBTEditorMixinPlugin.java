@@ -51,7 +51,7 @@ public class NBTEditorMixinPlugin extends BasicMixinPlugin {
 			return;
 		
 		Version.newSwitch()
-				.range("1.20.0", null, () -> output.add("toggled.DrawContextMixin"))
+				.range("1.20.0", "1.21.10", () -> output.add("toggled.DrawContextMixin"))
 				.range("1.19.3", "1.19.4", () -> output.add("toggled.ScreenMixin"))
 				.range(null, "1.19.2", () -> {})
 				.run();
@@ -67,7 +67,7 @@ public class NBTEditorMixinPlugin extends BasicMixinPlugin {
 				.range(null, "1.20.4", () -> {})
 				.run();
 		Version.newSwitch()
-				.range("1.21.0", null, () -> output.add("toggled.TooltipMixin"))
+				.range("1.21.0", "1.21.10", () -> output.add("toggled.TooltipMixin"))
 				.range(null, "1.20.6", () -> {})
 				.run();
 		Version.newSwitch()
