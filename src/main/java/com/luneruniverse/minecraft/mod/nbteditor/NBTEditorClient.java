@@ -36,7 +36,8 @@ import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import tsp.headdb.ported.HeadAPI;
-
+public class NBTEditorClient implements ClientModInitializer {
+	static {
 	}
 	
 	public static final File SETTINGS_FOLDER = new File("nbteditor");
