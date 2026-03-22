@@ -37,7 +37,7 @@ public class ChatScreenMixin {
 		MixinLink.renderChatLimitWarning((ChatScreen) (Object) this, matrices);
 	}
 	
-	@Inject(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;, require = 0)V"), cancellable = true)
+	@Inject(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V"), cancellable = true)
 	private void keyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> info) {
 		if (!(MainUtil.client.currentScreen instanceof ChatScreen)) {
 			info.setReturnValue(true);
