@@ -26,6 +26,10 @@ public class MVMixinPlugin extends BasicMixinPlugin {
 		
 		Version.newSwitch()
 				.range("1.19.3", "1.21.10", () -> output.add("toggled.ScreenMixin"))
+                                .range(null, "1.19.2", () -> {});
+                Version.newSwitch()
+                                .range(null, "1.21.10", () -> output.add("ParentElementMixin"))
+                                .range("1.21.11", null, () -> {})
 				.range(null, "1.19.2", () -> {})
 				.run();
 		Version.newSwitch()

@@ -17,7 +17,6 @@
     "DrawableMixin",
     "ScreenMixin",
     "AbstractParentElementMixin",
-    "ParentElementMixin"
   ],
   "injectors": {
     "defaultRequire": 1
