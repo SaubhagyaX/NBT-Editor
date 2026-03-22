@@ -19,12 +19,12 @@ public class ChatScreenMixin {
 	@Shadow
 	protected TextFieldWidget chatField;
 	
-	@Inject(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ChatScreen;sendMessage(Ljava/lang/String;Z)V"), cancellable = true)
+	@Inject(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ChatScreen;sendMessage(Ljava/lang/String;Z, require = 0)V"), cancellable = true)
 	@Group(name = "keyPressed", min = 1)
 	private void enterPressed_new(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> info) {
 		enterPressed_impl(info);
 	}
-	@Inject(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/class_408;method_44056(Ljava/lang/String;Z)Z"), cancellable = true, remap = false)
+	@Inject(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/class_408;method_44056(Ljava/lang/String;Z, require = 0)Z"), cancellable = true, remap = false)
 	@Group(name = "keyPressed", min = 1)
 	@SuppressWarnings("target")
 	private void enterPressed_mid(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> info) {

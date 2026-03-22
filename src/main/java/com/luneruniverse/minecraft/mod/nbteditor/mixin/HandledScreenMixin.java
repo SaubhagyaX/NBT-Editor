@@ -33,7 +33,7 @@ public class HandledScreenMixin {
 			GetLostItemCommand.addToHistory(cursor);
 	}
 	
-	@Inject(method = "keyPressed", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "keyPressed", at = @At(value = "HEAD", require = 0), cancellable = true)
 	private void keyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> info) {
 		HandledScreen<?> source = (HandledScreen<?>) (Object) this;
 		if (source instanceof CreativeInventoryScreen || source instanceof ClientHandledScreen)

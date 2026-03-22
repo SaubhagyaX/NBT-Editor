@@ -12,7 +12,7 @@ import net.minecraft.client.gui.ParentElement;
 
 @Mixin(ParentElement.class)
 public interface ParentElementMixin {
-	@Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "mouseClicked", at = @At("HEAD", require = 0), cancellable = true)
 	private void mouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> info) {
 		if (!(this instanceof OldEventBehavior))
 			return;
