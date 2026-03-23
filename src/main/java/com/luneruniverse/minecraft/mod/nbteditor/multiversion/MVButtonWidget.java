@@ -70,7 +70,10 @@ public class MVButtonWidget extends PressableWidget {
 				.run();
 	}
 	@Override
-	protected final void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+	public void drawIcon(DrawContext context, int x, int y, float delta) {
+		renderButton(MVDrawableHelper.getMatrices(context), x, y, 0);
+	}
+	protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
 		renderButton(MVDrawableHelper.getMatrices(context), mouseX, mouseY, delta);
 	}
 	public final void method_48579(MatrixStack matrices, int mouseX, int mouseY, float delta) {

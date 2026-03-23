@@ -26,7 +26,7 @@ class MVTexturedButtonWidget_1_20_2 extends ButtonWidget {
 	}
 	
 	@Override
-	public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+	public void drawIcon(DrawContext context, int x, int y, float delta) {
 		drawTexture(context, this.texture, getX(), getY(), this.u, this.v, this.hoveredVOffset, this.width, this.height,
 				this.textureWidth, this.textureHeight);
 	}
